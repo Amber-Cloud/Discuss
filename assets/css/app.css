@@ -1,3 +1,26 @@
 /* This file is for your main application css. */
 
 @import "./phoenix.css";
+.help-block {
+    color: red;
+    text-transform: capitalize;
+    position: absolute;
+    top: 70px;
+    font-size: 0.8em;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.btn-save {
+    position: relative;
+    margin-top: 20px;
+}
+
+.alert_error {
+    position: relative;
+    margin-bottom: 50px;
+}
+
