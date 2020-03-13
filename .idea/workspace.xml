@@ -1,43 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="96ee4579-c457-42e7-bad7-ab2094339b48" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/bypass.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/certifi.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/credo.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/dialyxir.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/excoveralls.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/idna.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/metrics.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mimerl.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/oauth2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/parse_trans.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/ssl_verify_fun.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/ueberauth.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/ueberauth_github.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/unicode_util_compat.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discuss_web/controllers/auth_controller.ex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discuss_web/controllers/plugs/set_user.ex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discuss_web/controllers/topic_controller.ex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discuss_web/schemas/topic.ex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discuss_web/schemas/user.ex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discuss_web/templates/topic/edit.html.eex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discuss_web/templates/topic/index.html.eex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discuss_web/templates/topic/new.html.eex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/discuss_web/views/topic_view.ex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/hackney.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/hackney.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/discuss_web/channels/comments_channel.ex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/discuss_web/controllers/plugs/require_auth.ex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/discuss_web/schemas/comment.ex" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/discuss_web/templates/topic/show.html.eex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.exs" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.exs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/socket.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/socket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/discuss.iml" beforeDir="false" afterPath="$PROJECT_DIR$/discuss.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/discuss_web/controllers/page_controller.ex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discuss_web/channels/user_socket.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/discuss_web/channels/user_socket.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discuss_web/controllers/auth_controller.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/discuss_web/controllers/auth_controller.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discuss_web/controllers/plugs/set_user.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/discuss_web/controllers/plugs/set_user.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discuss_web/controllers/topic_controller.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/discuss_web/controllers/topic_controller.ex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/discuss_web/router.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/discuss_web/router.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discuss_web/schemas/topic.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/discuss_web/schemas/topic.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discuss_web/schemas/user.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/discuss_web/schemas/user.ex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/discuss_web/templates/layout/app.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/discuss_web/templates/layout/app.html.eex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/discuss_web/templates/page/index.html.eex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/discuss_web/views/page_view.ex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mix.exs" beforeDir="false" afterPath="$PROJECT_DIR$/mix.exs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mix.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mix.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discuss_web/templates/topic/index.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/discuss_web/templates/topic/index.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discuss_web/templates/topic/new.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/discuss_web/templates/topic/new.html.eex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +46,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cards/poker/lib/poker.ex" />
+    <property name="last_opened_file_path" value="$USER_HOME$/ElixirCode/update" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="ServiceViewManager">
@@ -89,26 +76,45 @@
     </task>
     <servers />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="1415" y="531" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1581549192489">
+    <state x="1100" y="256" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583246205862">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="1415" y="531" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.2194.1194@0.0.2194.1194" timestamp="1581549192489" />
-    <state x="1427" y="360" key="FileChooserDialogImpl" timestamp="1582556475231">
+    <state x="1100" y="256" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2194.1194@0.0.2194.1194" timestamp="1583246205862" />
+    <state x="1393" y="412" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582933436983">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="1427" y="360" key="FileChooserDialogImpl/0.0.2194.1194@0.0.2194.1194" timestamp="1582556475231" />
+    <state x="1393" y="412" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2194.1194@0.0.2194.1194" timestamp="1582933436983" />
+    <state x="1415" y="531" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1583798955857">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="1415" y="531" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.2194.1194@0.0.2194.1194" timestamp="1583798955857" />
+    <state x="1398" y="458" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1583246158191">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="1398" y="458" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.2194.1194@0.0.2194.1194" timestamp="1583246158191" />
+    <state x="1427" y="360" key="FileChooserDialogImpl" timestamp="1583882416484">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="1427" y="360" key="FileChooserDialogImpl/0.0.2194.1194@0.0.2194.1194" timestamp="1583882416484" />
     <state x="1157" y="247" key="SettingsEditor" timestamp="1581963423634">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="1157" y="247" key="SettingsEditor/0.0.2194.1194@0.0.2194.1194" timestamp="1581963423634" />
-    <state x="1350" y="231" width="591" height="732" key="find.popup" timestamp="1581451919487">
+    <state x="1350" y="231" width="591" height="732" key="find.popup" timestamp="1583970201524">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="1350" y="231" width="591" height="732" key="find.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1581451919487" />
-    <state x="1307" y="267" width="672" height="678" key="search.everywhere.popup" timestamp="1582143136671">
+    <state x="1350" y="231" width="591" height="732" key="find.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1583970201524" />
+    <state x="1303" y="283" key="run.anything.popup" timestamp="1584056479069">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="1307" y="267" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1582143136671" />
+    <state x="1303" y="283" key="run.anything.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1584056479069" />
+    <state x="1093" y="374" width="672" height="678" key="search.everywhere.popup" timestamp="1584052411891">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="1093" y="374" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194@0.0.2194.1194" timestamp="1584052411891" />
   </component>
 </project>

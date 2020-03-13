@@ -9,14 +9,14 @@ defmodule DiscussWeb.Plugs.SetUser do
 
   end
 
-  def call(conn, _params) do #params are the return value of the init fun
+  def call(conn, _params) do #params are the return value of the init fun, so we don't use params
     user_id = get_session(conn, :user_id)
 
     cond do
       user = user_id && Repo.get(User, user_id) -> #if user_id is defined (then true) and the right part returns a user, the whole exp is truthy
         assign(conn, :user, user)
       true ->
-        assign(conn, :user, nil)
+        assign(conn, :user, %{id: nil})
     end
 
   end

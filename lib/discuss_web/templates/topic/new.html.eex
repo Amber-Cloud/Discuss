@@ -6,6 +6,13 @@
     <%= error_tag(f, :title) %>
   </div>
 
+  <div class="form-group">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">mode_edit</i>
+        <%= textarea(f, :body, placeholder: "Please write what you'd like to discuss here", class: "materialize-textarea") %>
+    </div>
+  </div>
+
   <%= submit("Save Topic", class: "btn btn-primary btn-save") %>
 <%end%>
 

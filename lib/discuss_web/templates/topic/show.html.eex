@@ -1,0 +1,31 @@
+<h4><%= @topic.title %></h4>
+
+<p class="topic-body"><%= @topic.body %></p>
+<div class = "secondary-content" >
+  <%= if @topic.user, do: @topic.user.email, else: "Anonymous" %>
+</div>
+
+<%= if @conn.assigns.user.id do %>
+    <div class =" input-field">
+        <textarea class = "materialize-textarea"></textarea>
+        <button class = "btn">Add Comment</button>
+    </div>
+<% end %>
+<div>
+    <ul class = "collection">
+      <%= for comment <- @topic.comments do %>
+        <li class = "collection-item">
+             <%= comment.content %>
+             <div class = "secondary-content">
+               <%= if comment.user, do: comment.user.email, else: "Anonymous" %>
+             </div>
+        </li>
+      <% end %>
+    </ul>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    window.createSocket(<%= @topic.id %>)
+  });
+</script>

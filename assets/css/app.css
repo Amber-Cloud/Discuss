@@ -24,3 +24,16 @@
     margin-bottom: 50px;
 }
 
+.collection-item {
+    font-size: 0.8em;
+}
+
+.topic-body {
+    font-size: 0.8em;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.secondary-content {
+    font-size: 20px;
+}

@@ -7,7 +7,12 @@
     <title>Discuss · Phoenix Framework</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons"
+    <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script>
+      <%= if @conn.assigns.user.id do %>
+        window.userToken = "<%= Phoenix.Token.sign(DiscussWeb.Endpoint, "key", @conn.assigns.user.id) %>"
+      <% end %>
+    </script>
 
     <%= csrf_meta_tag() %>
   </head>
@@ -18,7 +23,7 @@
                 Discussions
             </a>
             <ul class = "right">
-              <%= if @conn.assigns[:user] do %>
+              <%= if @conn.assigns.user.id do %>
                 <li>
                   <%= link "Sign Out", to: Routes.auth_path(@conn, :sign_out) %>
                 </li>

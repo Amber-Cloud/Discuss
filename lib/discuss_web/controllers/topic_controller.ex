@@ -5,10 +5,24 @@ defmodule DiscussWeb.TopicController do
   alias DiscussWeb.Topic
   alias Discuss.Repo
 
+  plug DiscussWeb.Plugs.RequireAuth when action in [:new, :create, :edit, :update, :delete]
+
+  plug :check_topic_owner when action in [:edit, :update, :delete]
+
   def index(conn, _params) do
     IO.inspect(conn.assigns)
+    #conn = put_in(conn.assigns.user, %{})
     topics = Repo.all(Topic)
     render(conn, "index.html", topics: topics)
+  end
+
+  def show(conn, %{"id" => topic_id}) do
+    topic =
+      Topic
+      |> Repo.get!(topic_id) # ! -> if no record -> error 404
+      |> Repo.preload(comments: [:user])
+      |> Repo.preload([:user])
+    render(conn, "show.html", topic: topic)
   end
 
   def new(conn, _params) do
@@ -17,8 +31,10 @@ defmodule DiscussWeb.TopicController do
     render(conn,  "new.html", changeset: changeset) #add changeset kw so that new.html gets @changeset from here
   end
 
-  def create(conn, %{"topic" => topic}) do
-    changeset = Topic.changeset(%Topic{}, topic) #change to DB, topic - title for the new record
+  def create(conn, params = %{"topic" => topic}) do
+    changeset = conn.assigns.user
+      |> Ecto.build_assoc(:topics)
+      |> Topic.changeset(topic)
 
     case Repo.insert(changeset) do
       {:ok, _topic} ->
@@ -62,5 +78,17 @@ defmodule DiscussWeb.TopicController do
     conn
     |> put_flash(:info, "Topic Deleted")
     |> redirect(to: Routes.topic_path(conn, :index))
+  end
+
+  def check_topic_owner(conn, _params) do
+    %{params: %{"id" => topic_id}} = conn
+    if Repo.get(Topic, topic_id).user_id == conn.assigns.user.id do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You cannot edit or delete this topic.")
+      |> redirect(to: Routes.topic_path(conn, :index))
+      |> halt()
+    end
   end
 end
