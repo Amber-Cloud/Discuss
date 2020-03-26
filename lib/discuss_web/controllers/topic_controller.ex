@@ -10,19 +10,26 @@ defmodule DiscussWeb.TopicController do
   plug :check_topic_owner when action in [:edit, :update, :delete]
 
   def index(conn, _params) do
-    IO.inspect(conn.assigns)
     #conn = put_in(conn.assigns.user, %{})
     topics = Repo.all(Topic)
     render(conn, "index.html", topics: topics)
   end
 
   def show(conn, %{"id" => topic_id}) do
-    topic =
-      Topic
-      |> Repo.get!(topic_id) # ! -> if no record -> error 404
-      |> Repo.preload(comments: [:user])
-      |> Repo.preload([:user])
-    render(conn, "show.html", topic: topic)
+
+    case Repo.get(Topic, topic_id) do
+      topic = %Topic{} ->
+        topic =
+          topic
+          |> Repo.preload(comments: [:user])
+          |> Repo.preload([:user])
+          render(conn, "show.html", topic: topic)
+      nil ->
+        conn
+        |> put_flash(:error, "This topic doesn't exist")
+        |> redirect(to: Routes.topic_path(conn, :index))
+        |> halt()
+    end
   end
 
   def new(conn, _params) do
@@ -31,11 +38,11 @@ defmodule DiscussWeb.TopicController do
     render(conn,  "new.html", changeset: changeset) #add changeset kw so that new.html gets @changeset from here
   end
 
-  def create(conn, params = %{"topic" => topic}) do
+  def create(conn, %{"topic" => topic}) do
     changeset = conn.assigns.user
       |> Ecto.build_assoc(:topics)
       |> Topic.changeset(topic)
-
+      |> Topic.identicon_changeset(topic)
     case Repo.insert(changeset) do
       {:ok, _topic} ->
         conn
@@ -43,7 +50,7 @@ defmodule DiscussWeb.TopicController do
         |> redirect(to: Routes.topic_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> put_flash(:error, "Oops! Please submit a valid topic name.")
+        |> put_flash(:error, "Oops! Please submit a valid topic name")
         |> render("new.html", changeset: changeset)
     end
   end
@@ -72,7 +79,9 @@ defmodule DiscussWeb.TopicController do
   end
 
   def delete(conn, %{"id" => topic_id}) do #id needs to be id due to conventions
-    Repo.get!(Topic, topic_id) |> Repo.delete!()
+    topic = Repo.get!(Topic, topic_id) |> Repo.preload([:comments])
+    topic.comments |> Enum.each(&Repo.delete!/1)
+    topic |> Repo.delete!()
 
     #no case here! if a user can't delete the topic, we don't want them to
     conn
@@ -86,7 +95,7 @@ defmodule DiscussWeb.TopicController do
       conn
     else
       conn
-      |> put_flash(:error, "You cannot edit or delete this topic.")
+      |> put_flash(:error, "You cannot edit or delete this topic")
       |> redirect(to: Routes.topic_path(conn, :index))
       |> halt()
     end

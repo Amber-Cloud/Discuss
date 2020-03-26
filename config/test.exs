@@ -3,9 +3,10 @@ use Mix.Config
 # Configure your database
 config :discuss, Discuss.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "alisa",
   database: "discuss_test",
   hostname: "localhost",
+  template: "template0",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
@@ -16,3 +17,5 @@ config :discuss, DiscussWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :discuss, :path_to_identicon, "/tmp"

@@ -43,12 +43,17 @@ function commentTemplate(comment) {
   if (comment.user) {
     email = comment.user.email;
   }
+  let date_time = comment.inserted_at;
+  let date = date_time.slice(5, 7) + "." + date_time.slice(0, 4);
+  let time = date_time.slice(11, 13) + ":" + date_time.slice(14, 16);
   return `
     <li class = "collection-item">
-      ${comment.content}
-      <div class = "secondary-content">
-        ${email}
-      </div>
+          ${comment.content}
+          <div class = "secondary-content comment-item">
+            ${email}
+            <br>
+            ${"Added " + date + " " + time}
+          </div>
     </li>
   `;
 }

@@ -86,5 +86,14 @@
     <orderEntry type="library" name="excoveralls" level="project" />
     <orderEntry type="library" name="oauth2" level="project" />
     <orderEntry type="library" name="bypass" level="project" />
+    <orderEntry type="library" name="egd" level="project" />
+    <orderEntry type="library" name="uuid" level="project" />
+    <orderEntry type="library" name="ex_aws" level="project" />
+    <orderEntry type="library" name="ex_aws_s3" level="project" />
+    <orderEntry type="library" name="benchfella" level="project" />
+    <orderEntry type="library" name="sweet_xml" level="project" />
+    <orderEntry type="library" name="jsx" level="project" />
+    <orderEntry type="library" name="mox" level="project" />
+    <orderEntry type="library" name="configparser_ex" level="project" />
   </component>
 </module>
