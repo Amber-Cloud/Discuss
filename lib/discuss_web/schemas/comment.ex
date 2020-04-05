@@ -16,5 +16,6 @@ defmodule DiscussWeb.Comment do
     struct
     |> cast(params, [:content])
     |> validate_required([:content])
+    |> validate_length(:content, min: 5, max: 1000)
   end
 end
