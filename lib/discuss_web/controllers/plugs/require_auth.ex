@@ -9,7 +9,7 @@ defmodule DiscussWeb.Plugs.RequireAuth do
   end
 
   def call(conn, _params) do
-    if conn.assigns[:user] do #let them pass if authorised or show error
+    if conn.assigns[:user] && conn.assigns.user.id do #let them pass if authorised or show error
       conn
     else
       conn
