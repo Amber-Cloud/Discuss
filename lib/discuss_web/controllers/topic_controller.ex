@@ -4,6 +4,7 @@ defmodule DiscussWeb.TopicController do
   #using alias allows us to use DiscussWeb's fun-s
   alias DiscussWeb.Topic
   alias Discuss.Repo
+  import Ecto.Query, only: [from: 2]
 
   plug DiscussWeb.Plugs.RequireAuth when action in [:new, :create, :edit, :update, :delete]
 
@@ -11,7 +12,8 @@ defmodule DiscussWeb.TopicController do
 
   def index(conn, _params) do
     #conn = put_in(conn.assigns.user, %{})
-    topics = Repo.all(Topic)
+    query = from(topic in Topic, order_by: [desc: topic.inserted_at])
+    topics = Repo.all(query)
     render(conn, "index.html", topics: topics)
   end
 
@@ -34,7 +36,6 @@ defmodule DiscussWeb.TopicController do
 
   def new(conn, _params) do
     changeset = Topic.changeset(%Topic{}, %{}) #1st arg = struct, 2nd = params
-
     render(conn,  "new.html", changeset: changeset) #add changeset kw so that new.html gets @changeset from here
   end
 
@@ -89,7 +90,7 @@ defmodule DiscussWeb.TopicController do
     |> redirect(to: Routes.topic_path(conn, :index))
   end
 
-  def check_topic_owner(conn, _params) do
+  defp check_topic_owner(conn, _params) do
     %{params: %{"id" => topic_id}} = conn
     if Repo.get(Topic, topic_id).user_id == conn.assigns.user.id do
       conn

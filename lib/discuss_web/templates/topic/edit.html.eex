@@ -2,6 +2,8 @@
     <div class = "form-group">
       <%= text_input(f, :title, placeholder: "Title", class: "form-control") %>
       <%= error_tag(f, :title) %>
+      <%= text_input(f, :body, placeholder: "What would you like to discuss?", class: "form-control") %>
+      <%= error_tag(f, :body) %>
     </div>
 
     <%= submit("Save Topic", class: "btn btn-primary") %>

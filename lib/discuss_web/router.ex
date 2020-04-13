@@ -25,7 +25,6 @@ defmodule DiscussWeb.Router do
 #    delete "/topics/:id", TopicController, :delete
 
     resources "/", TopicController
-    resources "/upload", UploadController, only: [:create, :new]
   end
 
   scope "/auth", DiscussWeb do

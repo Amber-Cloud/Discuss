@@ -17,7 +17,7 @@ defmodule Discuss.Identicon do
   end
 
   @spec save_image(binary, binary) :: binary
-  def save_image(image, input) do
+  defp save_image(image, input) do
     identicon_path = Application.get_env(:discuss, :path_to_identicon)
     path = "#{identicon_path}/#{input}.png"
     case File.write(path, image) do

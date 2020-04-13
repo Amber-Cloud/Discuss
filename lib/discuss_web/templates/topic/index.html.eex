@@ -18,7 +18,9 @@
 </ul>
 
 <div class = "fixed-action-btn">
-  <%= link to: Routes.topic_path(@conn, :new), class: "btn-floating btn-large waves-effect waves-light red" do %> <!-- need to adjust css-->
-    <i class = "material-icons">add</i>
+    <%= if @conn.assigns.user && @conn.assigns.user.id do %>
+      <%= link to: Routes.topic_path(@conn, :new), class: "btn-floating btn-large waves-effect waves-light red" do %> <!-- need to adjust css-->
+        <i class = "material-icons">add</i>
+      <% end %>
     <% end %>
 </div>
