@@ -144,4 +144,99 @@ defmodule DiscussWeb.TopicControllerTest do
 
     end
   end
+
+  describe "GET /:id/edit" do
+    setup %{user1: user1} do
+      topic = %Topic{
+        title: "Hello world",
+        user_id: user1.id,
+        body: "Let's discuss!",
+        identicon: @path_to_identicon <> @image_name
+      }
+      {:ok, topic} = Repo.insert(topic)
+
+      [topic: topic]
+
+      end
+    test "Show edit.html to the topic's owner", %{conn: conn, user1: user1, topic: topic} do
+
+      conn =
+        conn
+        |> Plug.Test.init_test_session(%{})
+        |> put_session(:user_id, user1.id)
+        |> get("/#{topic.id}/edit")
+
+      assert html_response(conn, 200) =~ topic.title
+      assert html_response(conn, 200) =~ topic.body |> Phoenix.HTML.html_escape() |> Phoenix.HTML.safe_to_string()
+    end
+
+    test "An authorised user cannot edit another user's topic", %{conn: conn, user2: user2, topic: topic} do
+      conn =
+        conn
+        |> Plug.Test.init_test_session(%{})
+        |> put_session(:user_id, user2.id)
+        |> get("/#{topic.id}/edit")
+
+        assert html_response(conn, 302)
+        assert get_flash(conn, :error) == "You cannot edit or delete this topic"
+    end
+  end
+
+  describe "PUT /:id" do
+    setup %{user1: user1} do
+      old_topic = %Topic{
+        title: "Hello world",
+        user_id: user1.id,
+        body: "Let's discuss!",
+        identicon: @path_to_identicon <> @image_name
+      }
+      {:ok, old_topic} = Repo.insert(old_topic)
+
+      changed_topic = %{title: "Hello world again", body: "Let's discuss some more!"}
+
+      [old_topic: old_topic, changed_topic: changed_topic]
+    end
+
+    test "An authorised user successfully updates their topic",
+         %{conn: conn, old_topic: old_topic, changed_topic: changed_topic, user1: user1} do
+      conn =
+        conn
+        |> Plug.Test.init_test_session(%{})
+        |> put_session(:user_id, user1.id)
+        |> put("/#{old_topic.id}", %{"topic" => changed_topic})
+
+      assert get_flash(conn, :info) == "Topic Updated"
+
+      topic_in_db = Repo.get(Topic, old_topic.id)
+
+      assert topic_in_db.title == changed_topic.title
+      assert topic_in_db.body == changed_topic.body
+
+    end
+
+    test "An authorised user cannot update another user's topic",
+         %{conn: conn, user2: user2, old_topic: old_topic, changed_topic: changed_topic} do
+      conn =
+        conn
+        |> Plug.Test.init_test_session(%{})
+        |> put_session(:user_id, user2.id)
+        |> put("/#{old_topic.id}", %{"topic" => changed_topic})
+
+      assert html_response(conn, 302)
+      assert get_flash(conn, :error) == "You cannot edit or delete this topic"
+
+    end
+
+    test "An unauthorised user cannot update a topic",
+         %{conn: conn, old_topic: old_topic, changed_topic: changed_topic} do
+      conn =
+        conn
+        |> Plug.Test.init_test_session(%{})
+        |> put("/#{old_topic.id}", %{"topic" => changed_topic})
+
+      assert html_response(conn, 302)
+      assert get_flash(conn, :error) == "You must be logged in."
+
+    end
+  end
 end
