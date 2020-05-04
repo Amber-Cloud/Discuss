@@ -239,4 +239,62 @@ defmodule DiscussWeb.TopicControllerTest do
 
     end
   end
+
+  describe "DELETE /:id" do
+    setup %{user1: user1, user2: user2} do
+      {:ok, topic} = Repo.insert(
+        %Topic{
+          title: "A new topic",
+          body: "Let's discuss this!",
+          user: user1,
+          identicon: @path_to_identicon <> @image_name
+        }
+      )
+      comment1 = %Comment{content: "I'm leaving a comment", user_id: user2.id, topic_id: topic.id}
+      {:ok, comment1} = Repo.insert(comment1)
+
+      comment2 = %Comment{content: "I'm leaving a comment, too", user_id: user1.id, topic_id: topic.id}
+      {:ok, comment2} = Repo.insert(comment2)
+
+      [topic: topic, comment1: comment1, comment2: comment2]
+    end
+
+    test "An authorised user can delete their topic", %{conn: conn, topic: topic, comment1: comment1, comment2: comment2, user1: user1} do
+      conn =
+        conn
+        |> Plug.Test.init_test_session(%{})
+        |> put_session(:user_id, user1.id)
+        |> delete("/#{topic.id}")
+
+      assert get_flash(conn, :info) == "Topic Deleted"
+      assert html_response(conn, 302)
+      refute Repo.get(Topic, topic.id)
+      refute Repo.get(Comment, comment1.id)
+      refute Repo.get(Comment, comment2.id)
+    end
+
+    test "An authorised user cannot delete someone else's topic", %{conn: conn, topic: topic, user2: user2} do
+      conn =
+        conn
+        |> Plug.Test.init_test_session(%{})
+        |> put_session(:user_id, user2.id)
+        |> delete("/#{topic.id}")
+
+      refute get_flash(conn, :info) == "Topic Deleted"
+      assert get_flash(conn, :error) == "You cannot edit or delete this topic"
+      assert html_response(conn, 302)
+      assert Repo.get(Topic, topic.id)
+    end
+
+    test "An unauthorised user cannot delete someone else's topic", %{conn: conn, topic: topic} do
+      conn =
+        conn
+        |> delete("/#{topic.id}")
+
+      refute get_flash(conn, :info) == "Topic Deleted"
+      assert get_flash(conn, :error) == "You must be logged in."
+      assert html_response(conn, 302)
+      assert Repo.get(Topic, topic.id)
+    end
+  end
 end
