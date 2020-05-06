@@ -18,4 +18,4 @@ config :discuss, DiscussWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-config :discuss, :path_to_identicon, "/tmp"
+config :discuss, :path_to_identicon, "/tmp/images"

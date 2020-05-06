@@ -20,6 +20,11 @@ defmodule Discuss.Identicon do
   defp save_image(image, input) do
     identicon_path = Application.get_env(:discuss, :path_to_identicon)
     path = "#{identicon_path}/#{input}.png"
+
+    unless File.exists?(identicon_path) do
+      File.mkdir_p(identicon_path)
+    end
+
     case File.write(path, image) do
       :ok ->
         path

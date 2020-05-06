@@ -76,4 +76,4 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-config :discuss, :path_to_identicon, "/mnt/c/Users/kintu/discuss/priv/static/images"
+config :discuss, :path_to_identicon, "#{System.get_env("DISCUSS_PROJECT_DIRECTORY")}/priv/static/images"
