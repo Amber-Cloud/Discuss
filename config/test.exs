@@ -3,7 +3,7 @@ use Mix.Config
 # Configure your database
 config :discuss, Discuss.Repo,
   username: "postgres",
-  password: "alisa",
+  password: "postgres",
   database: "discuss_test",
   hostname: "localhost",
   template: "template0",

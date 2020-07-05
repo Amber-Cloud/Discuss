@@ -46,9 +46,6 @@ defmodule Discuss.MixProject do
       {:ueberauth, "~> 0.6"},
       {:ueberauth_github, "~> 0.7"},
       {:egd, github: "erlang/egd"},
-      {:uuid, "~> 1.1" },
-      {:ex_aws, "~> 2.1"},
-      {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.9"}
     ]
   end

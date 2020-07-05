@@ -3,7 +3,6 @@ defmodule DiscussWeb.TopicController do
 
   #using alias allows us to use DiscussWeb's fun-s
   alias DiscussWeb.Topic
-  alias Discuss.Repo
   import Ecto.Query, only: [from: 2]
 
   plug DiscussWeb.Plugs.RequireAuth when action in [:new, :create, :edit, :update, :delete]
@@ -51,7 +50,7 @@ defmodule DiscussWeb.TopicController do
         |> redirect(to: Routes.topic_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> put_flash(:error, "Oops! Please submit a valid topic name")
+        |> put_flash(:error, "Oops! Please submit a valid topic (name or content)")
         |> render("new.html", changeset: changeset)
     end
   end

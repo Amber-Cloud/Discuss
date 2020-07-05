@@ -17,7 +17,9 @@ channel.join()
   document.querySelector('button').addEventListener('click', () => {
     const content = document.querySelector('textarea').value;
 
-    channel.push('comment:add', { content: content });
+    channel.push('comment:add', { content: content })
+        .receive("ok", () => {console.log("Comment added")})
+        .receive("error", () => {alert("Error! Please add a valid comment.")});
 
     document.querySelector('textarea').value = "";
   })

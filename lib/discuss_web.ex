@@ -21,6 +21,7 @@ defmodule DiscussWeb do
     quote do
       use Phoenix.Controller, namespace: DiscussWeb
 
+      alias Discuss.Repo
       import Plug.Conn
       import DiscussWeb.Gettext
       alias DiscussWeb.Router.Helpers, as: Routes

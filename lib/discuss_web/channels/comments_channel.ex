@@ -26,7 +26,7 @@ defmodule DiscussWeb.CommentsChannel do
         broadcast!(socket, "comments:#{socket.assigns.topic.id}:new", %{comment: comment})
         {:reply, :ok, socket}
       {:error, _reason} ->
-        {:reply, {:error, %{errors: changeset}}, socket}
+        {:reply, {:error, %{errors: "Please enter a valid comment"}}, socket}
     end
   end
 end

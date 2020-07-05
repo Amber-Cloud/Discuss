@@ -2,7 +2,6 @@ defmodule DiscussWeb.AuthController do
   use DiscussWeb, :controller
   plug Ueberauth
   alias DiscussWeb.User
-  alias Discuss.Repo
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     provider = Atom.to_string(auth.provider)
@@ -22,7 +21,7 @@ defmodule DiscussWeb.AuthController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Welcome back!")
-        |> put_session(:user_id, user.id) #user has user_id in their cookies now
+        |> put_session(:user_id, user.id) #assigns the user_id to the session
         |> redirect(to: Routes.topic_path(conn, :index))
       {:error, _reason} ->
         conn

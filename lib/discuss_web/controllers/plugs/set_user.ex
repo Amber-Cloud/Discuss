@@ -12,7 +12,7 @@ defmodule DiscussWeb.Plugs.SetUser do
     user_id = get_session(conn, :user_id)
 
     cond do
-      user = user_id && Repo.get(User, user_id) -> #if user_id is defined (then true) and the right part returns a user, the whole exp is truthy
+      user = user_id && Repo.get(User, user_id) -> #if user_id is defined (then true) and the right part returns a user, the whole exp is truthy and returns the second part
         assign(conn, :user, user)
       true ->
         assign(conn, :user, %{id: nil})
