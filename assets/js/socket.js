@@ -12,8 +12,6 @@ channel.join()
    })
   .receive("error", resp => { console.log("Unable to join", resp) });
 
-  channel.on(`comments:${topicId}:new`, renderComment);
-
   document.querySelector('button').addEventListener('click', () => {
     const content = document.querySelector('textarea').value;
 
@@ -23,6 +21,9 @@ channel.join()
 
     document.querySelector('textarea').value = "";
   })
+
+    channel.on(`comments:${topicId}:new`, renderComment);
+
 }
 
 function renderComments(comments) {
@@ -46,7 +47,7 @@ function commentTemplate(comment) {
     email = comment.user.email;
   }
   let date_time = comment.inserted_at;
-  let date = date_time.slice(5, 7) + "." + date_time.slice(0, 4);
+  let date = date_time.slice(8, 10) + "." + date_time.slice(5, 7) + "." + date_time.slice(0, 4);
   let time = date_time.slice(11, 13) + ":" + date_time.slice(14, 16);
   return `
     <li class = "collection-item">
