@@ -1,6 +1,6 @@
 defmodule DiscussWeb.UserChannelTest do
   use DiscussWeb.ChannelCase
-  alias DiscussWeb.{UserSocket, CommentsChannel, User}
+  alias DiscussWeb.{UserSocket, User}
   alias Discuss.Repo
 
   test "connect fun adds verified user id to the socket" do

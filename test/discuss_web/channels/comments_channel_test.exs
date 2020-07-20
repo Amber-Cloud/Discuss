@@ -46,7 +46,7 @@ defmodule DiscussWeb.CommentsChannelTest do
     assert %Comment{content: "A valid comment", user_id: ^user_id, topic_id: topic_id} = comment_in_db
 
     event = "comments:#{topic_id}:new"
-    assert_broadcast(event, %{comment: valid_comment})
+    assert_broadcast(^event, %{comment: valid_comment})
 
   end
 
