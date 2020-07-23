@@ -4,7 +4,8 @@ defmodule DiscussWeb.AuthController do
   alias DiscussWeb.User
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    user_params = %{token: auth.credentials.token, email: auth.info.email, provider: auth.provider}
+    provider = Atom.to_string(auth.provider)
+    user_params = %{token: auth.credentials.token, email: auth.info.email, provider: provider}
     changeset = User.changeset(%User{}, user_params)
     sign_in(conn, changeset)
   end
